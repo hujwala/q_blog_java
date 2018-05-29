@@ -1,7 +1,12 @@
 package com.blog.blogProject;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -14,10 +19,22 @@ public class User {
     private String password;
     private String profileImage;
     private int writtenStoryCount;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss z")
     private Date createedAt;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss z")
     private Date updatedAt;
 
     public User() {
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        createedAt = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = new Date();
     }
 
     public User(String name, String email, String password, String profileImage, int writtenStoryCount, Date createedAt, Date updatedAt) {
