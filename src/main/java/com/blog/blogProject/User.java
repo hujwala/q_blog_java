@@ -1,4 +1,4 @@
-package model;
+package com.blog.blogProject;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
