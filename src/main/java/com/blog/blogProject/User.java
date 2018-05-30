@@ -1,11 +1,10 @@
 package com.blog.blogProject;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
+import javax.persistence.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -14,30 +13,26 @@ public class User {
 
 
     private String name;
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
+    private Long userId;
     private String email;
     private String password;
     private String profileImage;
     private int writtenStoryCount;
+    @CreationTimestamp
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss z")
     private Date createedAt;
+    @UpdateTimestamp
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss z")
     private Date updatedAt;
 
     public User() {
     }
 
-    @PrePersist
-    protected void onCreate() {
-        createedAt = new Date();
-    }
 
-    @PreUpdate
-    protected void onUpdate() {
-        updatedAt = new Date();
-    }
-
-    public User(String name, String email, String password, String profileImage, int writtenStoryCount, Date createedAt, Date updatedAt) {
+    public User(String name, String email, String password, String profileImage, int writtenStoryCount, Date createedAt, Date updatedAt, Long userId) {
+        this.userId = userId;
         this.name = name;
         this.email = email;
         this.password = password;
@@ -46,6 +41,7 @@ public class User {
         this.createedAt = createedAt;
         this.updatedAt = updatedAt;
     }
+
 
     public String getName() {
         return name;
@@ -101,5 +97,14 @@ public class User {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }
