@@ -1,6 +1,11 @@
-package model;
+package com.blog.blogProject.model;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Date;
 
@@ -8,19 +13,24 @@ import java.util.Date;
 public class User {
 
 
-    private String name;
-    @Id
+
     private String email;
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Id
+    private Long id;
+    private String name;
     private String password;
     private String profileImage;
     private int writtenStoryCount;
+    @CreationTimestamp
     private Date createedAt;
+    @UpdateTimestamp
     private Date updatedAt;
 
     public User() {
     }
 
-    public User(String name, String email, String password, String profileImage, int writtenStoryCount, Date createedAt, Date updatedAt) {
+    public User(String name, String email, String password, String profileImage, int writtenStoryCount, Date createedAt, Date updatedAt,Long id) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -28,6 +38,7 @@ public class User {
         this.writtenStoryCount = writtenStoryCount;
         this.createedAt = createedAt;
         this.updatedAt = updatedAt;
+        this.id=id;
     }
 
     public String getName() {
@@ -84,5 +95,13 @@ public class User {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
