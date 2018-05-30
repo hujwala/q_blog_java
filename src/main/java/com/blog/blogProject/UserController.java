@@ -2,10 +2,7 @@ package com.blog.blogProject;
 
 import com.blog.blogProject.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,13 +12,14 @@ public class UserController {
 
     @Autowired
      UserService userService;
-
+    @CrossOrigin(origins = {"http://localhost:3000"})
     @RequestMapping(method = RequestMethod.POST,value = "/user")
     public void addUser(@RequestBody User aUser){
 
         userService.addUser(aUser);
 
     }
+    @CrossOrigin(origins = {"http://localhost:3000"})
     @RequestMapping("/users")
     public List<User> getAllUser(){
         return userService.getAlluser();
