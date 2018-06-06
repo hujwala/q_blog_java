@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -14,11 +15,14 @@ public class User {
 
 
 
+    @NotNull
     private String email;
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Id
     private Long id;
+    @NotNull
     private String name;
+    @NotNull
     private String password;
     private String profileImage;
     private int writtenStoryCount;
