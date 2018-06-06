@@ -11,13 +11,10 @@ import java.util.Date;
 
 @Entity
 public class User {
-
-
-
-    private String email;
-    @GeneratedValue(strategy=GenerationType.AUTO)
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
+    private String email;
     private String name;
     private String password;
     private String profileImage;
