@@ -3,17 +3,17 @@ package com.blog.blogProject.model;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
-public class User {
+@Table(name="user")
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
+    private Long userId;
     private String email;
     private String name;
     private String password;
@@ -27,7 +27,7 @@ public class User {
     public User() {
     }
 
-    public User(String name, String email, String password, String profileImage, int writtenStoryCount, Date createedAt, Date updatedAt,Long id) {
+    public User(Long userId, String name, String email, String password, String profileImage, int writtenStoryCount, Date createedAt, Date updatedAt,Long id) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -35,7 +35,7 @@ public class User {
         this.writtenStoryCount = writtenStoryCount;
         this.createedAt = createedAt;
         this.updatedAt = updatedAt;
-        this.id=id;
+        this.userId=userId;
     }
 
     public String getName() {
@@ -95,10 +95,10 @@ public class User {
     }
 
     public Long getId() {
-        return id;
+        return userId;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.userId = id;
     }
 }

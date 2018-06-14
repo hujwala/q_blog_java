@@ -1,7 +1,9 @@
 package com.blog.blogProject.service;
 
 import com.blog.blogProject.Repo.BlogRepo;
+import com.blog.blogProject.Repo.UserRepo;
 import com.blog.blogProject.model.BlogTable;
+import com.blog.blogProject.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,11 +15,9 @@ public class BlogService {
 
     @Autowired
     BlogRepo blogRepo;
+    @Autowired
+    UserRepo userRepo;
 
-    public void addBlog(BlogTable aUser) {
-        blogRepo.save(aUser);
-
-    }
 
     public List<BlogTable> getAllblog() {
 

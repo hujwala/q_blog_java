@@ -19,12 +19,10 @@ public class UserController {
         userService.addUser(aUser);
     }
 
-
     @RequestMapping("/users")
     public List<User> getAllUser(){
        return userService.getAlluser();
     }
-
 
     @RequestMapping(method = RequestMethod.POST,value = "/getUser")
     public User getLoginData(@RequestBody User aUser){

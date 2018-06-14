@@ -5,15 +5,17 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-public class BlogTable {
+@Table(name="blog_table")
+public class BlogTable implements Serializable {
+
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long Id;
-    @NotNull
-    private Long userId;
     private String title;
     private String description;
     private String content;
@@ -24,10 +26,16 @@ public class BlogTable {
     @UpdateTimestamp
     private Date updatedAt;
 
+
+    @ManyToOne
+    @JoinColumn(name="userId", referencedColumnName="userId")
+    private User user;
+
+
     public BlogTable() {
 
     }
-    public BlogTable(Long userId, String title, String description, String content, String image, String readingDuration, Date createedAt, Date updatedAt) {
+    public BlogTable(String title, String description, String content, String image, String readingDuration, Date createedAt, Date updatedAt) {
         this.title = title;
         this.description = description;
         this.content = content;
@@ -35,14 +43,15 @@ public class BlogTable {
         this.readingDuration = readingDuration;
         this.createedAt = createedAt;
         this.updatedAt = updatedAt;
-        this.userId = userId;
     }
+
 
 
     public String getTitle() {
 
         return title;
     }
+
 
     public void setTitle(String title) {
         this.title = title;
@@ -104,11 +113,12 @@ public class BlogTable {
         this.updatedAt = updatedAt;
     }
 
-    public Long getUserId() {
-        return userId;
+
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

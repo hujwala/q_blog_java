@@ -16,7 +16,6 @@ public class UserService {
     UserRepo userRepo;
 
     public void addUser(User aUser) {
-
         userRepo.save(aUser);
 
     }
@@ -25,32 +24,8 @@ public class UserService {
 
         List<User> user=new ArrayList<>();
         userRepo.findAll().forEach(user::add);
-
         return user;
     }
-
-    public User getLoginUser(Long id) {
-/*
-        User userr=null;
-
-        List<User> user=new ArrayList<>();
-        userRepo.findById(aEmail);
-        userRepo.findAll().forEach(user::add);
-*/
-
-        Optional<User> u=userRepo.findById(id);
-
-/*
-        for(int i=0;i<user.size();i++){
-            User lUser=user.get(i);
-            if(lUser.getEmail().equalsIgnoreCase(aEmail)){
-                 userr=user.get(i);
-            }
-        }
-*/
-        return u.get();
-    }
-
 
     public User getLogiData(User aUser) {
 
@@ -66,4 +41,5 @@ public class UserService {
 
          return null;
     }
+
 }
