@@ -28,10 +28,14 @@ public class BlogController {
     }
     @RequestMapping(value = "/blog/{userId}", method = RequestMethod.POST)
     public BlogTable create(@PathVariable Long userId, @RequestBody BlogTable blog) {
+       int storyCount= blogRepo.findByUserId(userId);//.size();
         User pbToAttachToThisBook = userRepo.findByUserId(userId);
+        pbToAttachToThisBook.setWrittenStoryCount(++storyCount);
         blog.setUser(pbToAttachToThisBook);
         return blogRepo.save(blog);
     }
+
+
 
     @RequestMapping("/blogs")
     public List<BlogTable> getAllBlog() {

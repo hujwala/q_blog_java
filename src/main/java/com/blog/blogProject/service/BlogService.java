@@ -6,6 +6,9 @@ import com.blog.blogProject.model.BlogTable;
 import com.blog.blogProject.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,4 +29,12 @@ public class BlogService {
 
         return blog;
     }
+
+   // @RequestMapping(value = "/getStoryCount/{userId}", method = RequestMethod.GET)
+   // public int getStoryCount(@PathVariable Long userId) {
+     //   User user = userRepo.findByUserId(userId);
+
+        //  blog.setUser(pbToAttachToThisBook);
+       // return user.getWrittenStoryCount();
+   // }
 }

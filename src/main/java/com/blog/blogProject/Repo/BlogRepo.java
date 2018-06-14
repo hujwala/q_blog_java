@@ -13,5 +13,9 @@ import java.util.List;
 @Repository
 public interface BlogRepo extends JpaRepository<BlogTable,Long> {
 
+   // @Query(value = "select * from blog_table where user_id = ?1", nativeQuery = true)
+    @Query(value= "select COUNT(*) FROM blog_table where user_id = ?1",nativeQuery = true)
+    int findByUserId(Long userId);
+
 }
 
