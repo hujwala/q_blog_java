@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BlogService {
@@ -23,14 +24,18 @@ public class BlogService {
 
 
     public List<BlogTable> getAllblog() {
-
         List<BlogTable> blog=new ArrayList<>();
         blogRepo.findAll().forEach(blog::add);
-
         return blog;
     }
 
-   // @RequestMapping(value = "/getStoryCount/{userId}", method = RequestMethod.GET)
+    public void removeBlog(Long blogId) {
+
+       Optional<BlogTable> blogTable= blogRepo.findById(blogId);
+        blogRepo.delete(blogTable.get());
+    }
+
+    // @RequestMapping(value = "/getStoryCount/{userId}", method = RequestMethod.GET)
    // public int getStoryCount(@PathVariable Long userId) {
      //   User user = userRepo.findByUserId(userId);
 

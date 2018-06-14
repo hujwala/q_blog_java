@@ -29,5 +29,10 @@ public class UserController {
        return userService.getLogiData(aUser);
     }
 
+    @DeleteMapping("user/deleteUserBy/{userId}")
+    public void deleteUser(@PathVariable Long userId){
+        userService.removeUser(userId);
+    }
+
 
 }

@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 @Repository
 @Transactional
 public interface UserRepo extends CrudRepository<User,Long> {
+
     public User findByUserId(Long userid);
 
 

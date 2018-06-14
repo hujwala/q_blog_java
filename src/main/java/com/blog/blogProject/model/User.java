@@ -12,7 +12,7 @@ import java.util.Set;
 @Table(name="user")
 public class User implements Serializable {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private Long userId;
     private String email;
     private String name;
@@ -23,7 +23,6 @@ public class User implements Serializable {
     private Date createedAt;
     @UpdateTimestamp
     private Date updatedAt;
-
     public User() {
     }
 

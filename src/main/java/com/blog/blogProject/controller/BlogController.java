@@ -35,6 +35,13 @@ public class BlogController {
         return blogRepo.save(blog);
     }
 
+    @DeleteMapping("/blog/deleteBlog/{blogId}")
+    public void deleteBlog(@PathVariable Long blogId){
+        blogService.removeBlog(blogId);
+    }
+
+
+
 
 
     @RequestMapping("/blogs")
