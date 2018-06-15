@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin(origins = {"*"})
-@RequestMapping("/token")
+@RequestMapping("/loginUser")
 public class TokenGenrator {
 
     private JwtTokenGenerator JwtGenrator;

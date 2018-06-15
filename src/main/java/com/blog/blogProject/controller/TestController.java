@@ -24,12 +24,6 @@ public class TestController {
     }
 
     @CrossOrigin(origins = {"*"})
-    @RequestMapping("/user")
-    public List<User> getAllUser(){
-        return userService.getAlluser();
-    }
-
-    @CrossOrigin(origins = {"*"})
     @RequestMapping("/use")
     public String getTest(){
         return "sucess";
