@@ -26,7 +26,8 @@ public class User implements Serializable {
     @UpdateTimestamp
     private Date updatedAt;
 
-    @OneToMany
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BlogTable> blog = new ArrayList<>();
 
     public User() {
