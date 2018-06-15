@@ -5,7 +5,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -23,10 +25,16 @@ public class User implements Serializable {
     private Date createedAt;
     @UpdateTimestamp
     private Date updatedAt;
+
+    @OneToMany
+    private List<BlogTable> blog = new ArrayList<>();
+
     public User() {
     }
 
-    public User(Long userId, String name, String email, String password, String profileImage, int writtenStoryCount, Date createedAt, Date updatedAt,Long id) {
+
+
+    public User(Long userId, String name, String email, String password, String profileImage, int writtenStoryCount, Date createedAt, Date updatedAt, Long id) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -99,5 +107,17 @@ public class User implements Serializable {
 
     public void setId(Long id) {
         this.userId = id;
+    }
+
+    public List<BlogTable> getBlog() {
+        return blog;
+    }
+
+    public void setBlog(List<BlogTable> blog) {
+        this.blog = blog;
+    }
+
+    public User(List<BlogTable> blog) {
+        this.blog = blog;
     }
 }

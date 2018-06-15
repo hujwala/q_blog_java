@@ -30,16 +30,16 @@ public class BlogService {
     }
 
     public void removeBlog(Long blogId) {
-
        Optional<BlogTable> blogTable= blogRepo.findById(blogId);
         blogRepo.delete(blogTable.get());
     }
 
-    // @RequestMapping(value = "/getStoryCount/{userId}", method = RequestMethod.GET)
-   // public int getStoryCount(@PathVariable Long userId) {
-     //   User user = userRepo.findByUserId(userId);
-
-        //  blog.setUser(pbToAttachToThisBook);
-       // return user.getWrittenStoryCount();
-   // }
+    public void updateBlog(Long blogId, BlogTable blog) {
+        int lUserId = blogRepo.findUserIdFromBlog(blogId);
+        User lUser=userRepo.findByUserId(Long.valueOf(lUserId));
+        blog.setUser(lUser);
+        blog.setId(blogId);
+        blogRepo.save(blog);
+    }
 }
+

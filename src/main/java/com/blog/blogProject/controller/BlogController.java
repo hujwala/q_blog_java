@@ -40,8 +40,10 @@ public class BlogController {
         blogService.removeBlog(blogId);
     }
 
-
-
+    @RequestMapping(method = RequestMethod.PUT,value = "user/updateBlogBy/{blogId}")
+    public void updateBlog(@PathVariable Long blogId, @RequestBody BlogTable blog){
+        blogService.updateBlog(blogId, blog);
+    }
 
 
     @RequestMapping("/blogs")

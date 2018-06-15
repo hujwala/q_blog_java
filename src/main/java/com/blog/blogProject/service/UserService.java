@@ -43,8 +43,17 @@ public class UserService {
     }
 
     public void removeUser(Long userId) {
-
         userRepo.delete(userRepo.findById(userId).get());
 
     }
+
+    public void updateUser(Long userId, User aUser) {
+      Optional<User> lUser= userRepo.findById(userId);
+        lUser.get().setName(aUser.getName());
+        lUser.get().setEmail(aUser.getEmail());
+        lUser.get().setPassword(aUser.getPassword());
+        lUser.get().setProfileImage(aUser.getProfileImage());
+        userRepo.save(lUser.get());
+    }
 }
+
