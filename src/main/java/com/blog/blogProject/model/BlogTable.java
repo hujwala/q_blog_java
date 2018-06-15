@@ -14,7 +14,7 @@ import java.util.List;
 public class BlogTable implements Serializable {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private Long Id;
     private String title;
     private String description;

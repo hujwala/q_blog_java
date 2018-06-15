@@ -2,9 +2,14 @@ package com.blog.blogProject.service;
 
 import com.blog.blogProject.Repo.UserRepo;
 import com.blog.blogProject.model.User;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -43,8 +48,12 @@ public class UserService {
     }
 
     public void removeUser(Long userId) {
-
         userRepo.delete(userRepo.findById(userId).get());
 
     }
+
+
+
+
+
 }
