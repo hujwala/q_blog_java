@@ -2,8 +2,8 @@ package com.blog.blogProject.model;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,6 +18,7 @@ public class User implements Serializable {
     private Long userId;
     private String email;
     private String name;
+    @NotNull
     private String password;
     private String profileImage;
     private int writtenStoryCount;

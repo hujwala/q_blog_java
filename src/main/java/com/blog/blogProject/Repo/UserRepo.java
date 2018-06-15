@@ -18,6 +18,5 @@ public interface UserRepo extends CrudRepository<User,Long> {
     int findUserIdFromUser(Long userId);
 
 
-
 }
 

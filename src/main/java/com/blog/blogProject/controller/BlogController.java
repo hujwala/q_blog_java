@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/rest")
 public class BlogController {
 
     private BlogRepo blogRepo;
@@ -26,7 +27,8 @@ public class BlogController {
     public BlogController(BlogRepo blogRepo) {
         this.blogRepo = blogRepo;
     }
-    @RequestMapping(value = "/blog/{userId}", method = RequestMethod.POST)
+    @CrossOrigin(origins = {"*"})
+    @PostMapping(value = "/blog/{userId}")
     public BlogTable create(@PathVariable Long userId, @RequestBody BlogTable blog) {
        int storyCount= blogRepo.findByUserId(userId);//.size();
         User pbToAttachToThisBook = userRepo.findByUserId(userId);
@@ -35,18 +37,21 @@ public class BlogController {
         return blogRepo.save(blog);
     }
 
+    @CrossOrigin(origins = {"*"})
     @DeleteMapping("/blog/deleteBlog/{blogId}")
     public void deleteBlog(@PathVariable Long blogId){
         blogService.removeBlog(blogId);
     }
 
-    @RequestMapping(method = RequestMethod.PUT,value = "user/updateBlogBy/{blogId}")
+    @CrossOrigin(origins = {"*"})
+    @PutMapping(value = "user/updateBlogBy/{blogId}")
     public void updateBlog(@PathVariable Long blogId, @RequestBody BlogTable blog){
         blogService.updateBlog(blogId, blog);
     }
 
 
-    @RequestMapping("/blogs")
+    @CrossOrigin(origins = {"*"})
+    @GetMapping("/blogs")
     public List<BlogTable> getAllBlog() {
         return blogService.getAllblog();
     }

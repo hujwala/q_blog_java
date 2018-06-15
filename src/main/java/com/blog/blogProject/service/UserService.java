@@ -20,9 +20,9 @@ public class UserService {
     @Autowired
     UserRepo userRepo;
 
-    public void addUser(User aUser) {
-        userRepo.save(aUser);
-
+    public User addUser(User aUser) {
+        User saveUser=userRepo.save(aUser);
+        return saveUser;
     }
 
     public List<User> getAlluser() {
@@ -47,6 +47,7 @@ public class UserService {
          return null;
     }
 
+
     public void removeUser(Long userId) {
         userRepo.delete(userRepo.findById(userId).get());
 
@@ -62,7 +63,19 @@ public class UserService {
     }
 
 
+    public boolean getExistUser(String userName, String role) {
 
+        List<User> user=new ArrayList<>();
+        userRepo.findAll().forEach(user::add);
+        System.out.println(user.size());
+
+        for(int i=0;i<user.size();i++){
+            User lUser=user.get(i);
+            if(lUser.getEmail().equalsIgnoreCase(userName) && lUser.getPassword().equals(role))
+                return true;
+        }
+        return false;
+    }
 
 }
 
