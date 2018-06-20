@@ -28,9 +28,18 @@ public class UserSignUp {
     public SignUpStatus userSignUp(@Valid @RequestBody User aUser) throws ConstraintViolationException {
         SignUpStatus signupStatus=new SignUpStatus();
         if(aUser.getEmail()!=null&&aUser.getPassword()!=null&&aUser.getName()!=null){
-            User lUser = userService.addUser(aUser);
-            signupStatus.setEmail(lUser.getEmail());
-            signupStatus.setStatusMessage(StringResource.SIGNUP_SUCESSFULL);
+
+            User lUser=null;
+            try{
+
+                 lUser = userService.addUser(aUser);
+                signupStatus.setEmail(lUser.getEmail());
+                signupStatus.setStatusMessage(StringResource.SIGNUP_SUCESSFULL);
+
+            }catch (Exception ex){
+                signupStatus.setStatusMessage(StringResource.SIGNUP_USER_EXIT);
+
+            }
             return signupStatus;
 
         }else{

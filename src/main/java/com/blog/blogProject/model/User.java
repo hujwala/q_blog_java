@@ -24,10 +24,10 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private Long userId;
+    @Column(name="email", unique=true)
     @NotNull(message = "{user.email.notNull}")
     @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\." +"[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@" +"(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
             message="{user.email.pattern}")
-    @Column(name="email", unique=true, nullable = false)
     private String email;
     @NotNull(message = "{user.name.notNull}")
     @Size(min = 5, max = 60, message = "{user.name.size}")
