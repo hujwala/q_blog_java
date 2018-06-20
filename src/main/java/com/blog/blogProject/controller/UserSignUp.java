@@ -16,7 +16,7 @@ public class BlogSignUp {
     //Signup API
     @CrossOrigin(origins = {"*"})
     @RequestMapping(method = RequestMethod.POST,value = "/userSignup")
-    public SignUpStatus userSignUp(@RequestBody User aUser){
+    public SignUpStatus userSignUp(@RequestBody User aUser) {
         SignUpStatus signupStatus=new SignUpStatus();
         if(aUser.getEmail()!=null&&aUser.getPassword()!=null&&aUser.getName()!=null){
             User lUser = userService.addUser(aUser);
