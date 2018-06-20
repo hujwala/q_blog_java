@@ -1,9 +1,13 @@
 package com.blog.blogProject.model;
 
+import com.blog.blogProject.service.UserService;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,14 +15,25 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name="user")
+/*@Table(
+        name="user",
+       uniqueConstraints=
+        @UniqueConstraint(columnNames={"email"})
+)*/
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private Long userId;
+    @Column(name="email", unique=true)
+    @NotNull(message = "{user.email.notNull}")
+    @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\." +"[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@" +"(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
+            message="{user.email.pattern}")
     private String email;
+    @NotNull(message = "{user.name.notNull}")
+    @Size(min = 5, max = 60, message = "{user.name.size}")
     private String name;
-    @NotNull
+    @NotNull(message = "{user.password.notnull}")
+    @Size(min=6, message = "{user.password.size}")
     private String password;
     private String profileImage;
     private int writtenStoryCount;
@@ -26,7 +41,6 @@ public class User implements Serializable {
     private Date createedAt;
     @UpdateTimestamp
     private Date updatedAt;
-
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BlogTable> blog = new ArrayList<>();

@@ -44,10 +44,10 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
         JwtAuthenticationTokeFilter filter=new JwtAuthenticationTokeFilter();
         filter.setAuthenticationManager(authenticationManager());
         filter.setAuthenticationSuccessHandler(new JwtSucessHandler());
-
         return filter;
 
     }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -61,15 +61,15 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.addFilterBefore(authenticationTokeFilter(),UsernamePasswordAuthenticationFilter.class);
         http.headers().cacheControl();
-/*
+
         http.headers()
                 // the headers you want here. This solved all my CORS problems!
                 .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Origin", "*"))
-                .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Methods", "POST, GET"))
+                .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Methods", "POST, GET, PUT"))
                 .addHeaderWriter(new StaticHeadersWriter("Access-Control-Max-Age", "3600"))
                 .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Credentials", "true"))
                 .addHeaderWriter(new StaticHeadersWriter("Access-Control-Allow-Headers", "Origin,Accept,X-Requested-With,Content-Type,Access-Control-Request-Method,Access-Control-Request-Headers,Authorization"));
-*/
+
     }
 
 

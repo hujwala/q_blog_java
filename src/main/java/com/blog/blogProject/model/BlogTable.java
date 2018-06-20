@@ -1,5 +1,6 @@
 package com.blog.blogProject.model;
 
+import com.blog.blogProject.utils.StringResource;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.OnDelete;
@@ -8,6 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -19,7 +21,11 @@ public class BlogTable implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private Long Id;
+    @NotNull(message = "{blog_table.title.notnull}")
+    @Size(min=3, message = "{blog_table.title.size}")
     private String title;
+    @NotNull(message = "{blog_table.description.notnull}")
+    @Size(min=10, message = "{blog_table.description.size}")
     private String description;
     private String content;
     private String image;

@@ -5,5 +5,9 @@ public class StringResource {
     public static final String SIGNUP_SUCESSFULL="Successfully user signup";
 
     public static final String SIGNUP_FAIL="User signup fail";
+    public static final String SIGNUP_USER_EXIT="User already exist";
+
+
+    //public static final String BLOG_TITLE = "Title must contain atleast 6 characters";
 
 }

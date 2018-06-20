@@ -7,9 +7,14 @@ import com.blog.blogProject.model.User;
 import com.blog.blogProject.service.BlogService;
 import com.blog.blogProject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/rest")
@@ -29,7 +34,7 @@ public class BlogController {
     }
     @CrossOrigin(origins = {"*"})
     @PostMapping(value = "/blog/{userId}")
-    public BlogTable create(@PathVariable Long userId, @RequestBody BlogTable blog) {
+    public BlogTable create(@PathVariable Long userId, @Valid @RequestBody BlogTable blog) {
        int storyCount= blogRepo.findByUserId(userId);//.size();
         User pbToAttachToThisBook = userRepo.findByUserId(userId);
         pbToAttachToThisBook.setWrittenStoryCount(++storyCount);
@@ -50,9 +55,10 @@ public class BlogController {
     }
 
 
-    @CrossOrigin(origins = {"*"})
+    @CrossOrigin(origins = {"*"}, allowedHeaders = {"Authorisation"})
     @GetMapping("/blogs")
     public List<BlogTable> getAllBlog() {
         return blogService.getAllblog();
     }
+
 }

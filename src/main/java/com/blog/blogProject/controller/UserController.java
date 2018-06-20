@@ -1,13 +1,12 @@
 package com.blog.blogProject.controller;
 
-import com.blog.blogProject.model.SignUpStatus;
 import com.blog.blogProject.model.User;
-import com.blog.blogProject.utils.StringResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.blog.blogProject.service.UserService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -55,13 +54,14 @@ public class UserController {
 
     @CrossOrigin(origins = {"*"})
     @PutMapping(value = "user/updateUserBy/{userId}")
-    public void updateUser(@PathVariable Long userId, @RequestBody User aUser){
+    public void updateUser(@Valid @PathVariable Long userId, @RequestBody User aUser){
         userService.updateUser(userId, aUser);
     }
 
     @CrossOrigin(origins = {"*"})
     @GetMapping("/use")
     public String getTest(){
+
         return "sucess";
     }
 
