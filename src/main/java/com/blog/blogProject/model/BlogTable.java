@@ -40,6 +40,22 @@ public class BlogTable implements Serializable {
     @JoinColumn(name="userId", referencedColumnName="userId")
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name="genreId", referencedColumnName="genreId")
+    private Genre genre;
+
+    public BlogTable(Genre genre) {
+        this.genre = genre;
+    }
+
+    public Genre getGenre() {
+
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
 
     public BlogTable() {
 
