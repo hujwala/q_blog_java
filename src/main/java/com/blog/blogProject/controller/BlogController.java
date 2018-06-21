@@ -1,8 +1,10 @@
 package com.blog.blogProject.controller;
 
 import com.blog.blogProject.Repo.BlogRepo;
+import com.blog.blogProject.Repo.GenreRepo;
 import com.blog.blogProject.Repo.UserRepo;
 import com.blog.blogProject.model.BlogTable;
+import com.blog.blogProject.model.Genre;
 import com.blog.blogProject.model.User;
 import com.blog.blogProject.service.BlogService;
 import com.blog.blogProject.service.UserService;
@@ -26,6 +28,9 @@ public class BlogController {
     private UserRepo userRepo;
 
     @Autowired
+    private GenreRepo genreRepo;
+
+    @Autowired
     BlogService blogService;
 
     @Autowired
@@ -33,12 +38,14 @@ public class BlogController {
         this.blogRepo = blogRepo;
     }
     @CrossOrigin(origins = {"*"})
-    @PostMapping(value = "/blog/{userId}")
-    public BlogTable create(@PathVariable Long userId, @Valid @RequestBody BlogTable blog) {
-       int storyCount= blogRepo.findByUserId(userId);//.size();
+    @PostMapping(value = "/blog/{userId}/{genreId}")
+    public BlogTable create(@PathVariable Long userId, @PathVariable Long genreId, @Valid @RequestBody BlogTable blog) {
+       int storyCount= blogRepo.findByUserId(userId);
         User pbToAttachToThisBook = userRepo.findByUserId(userId);
+        Genre genreRepoByGenreId = genreRepo.findByGenreId(genreId);
         pbToAttachToThisBook.setWrittenStoryCount(++storyCount);
         blog.setUser(pbToAttachToThisBook);
+        blog.setGenre(genreRepoByGenreId);
         return blogRepo.save(blog);
     }
 
