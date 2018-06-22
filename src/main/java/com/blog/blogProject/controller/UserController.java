@@ -1,10 +1,12 @@
 package com.blog.blogProject.controller;
 
 import com.blog.blogProject.model.User;
+import com.blog.blogProject.service.AmazonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.blog.blogProject.service.UserService;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -13,6 +15,7 @@ import java.util.List;
 @RequestMapping("/rest")
 public class UserController {
 
+    private AmazonClient amazonClient;
 
     @Autowired
     UserService userService;
@@ -68,6 +71,17 @@ public class UserController {
     public String getTest(){
 
         return "sucess";
+    }
+
+
+    @PostMapping("/uploadFile")
+    public String uploadFile(@RequestPart(value = "file") MultipartFile file) {
+        return this.amazonClient.uploadFile(file);
+    }
+
+    @DeleteMapping("/deleteFile")
+    public String deleteFile(@RequestPart(value = "url") String fileUrl) {
+        return this.amazonClient.deleteFileFromS3Bucket(fileUrl);
     }
 
 

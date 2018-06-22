@@ -1,3 +1,10 @@
+amazonProperties:
+  endpointUrl: http://s3.amazonaws.com/qblogjava
+  accessKey: AKIAI2XZRW7CYK7QYJHA
+  secretKey: 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
+  bucketName: qblogjava
+
+
 management:
   security:
     enabled: true
@@ -6,3 +13,6 @@ spring:
   resources:
     chain:
       enabled: true
+
+
+
