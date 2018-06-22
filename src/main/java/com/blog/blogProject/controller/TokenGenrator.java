@@ -25,7 +25,7 @@ public class TokenGenrator {
         this.JwtGenrator = jwtGenrator;
     }
 
-    @PostMapping
+    /*@PostMapping
     @CrossOrigin(origins = {"*"})
     public LoginSucessMsg genrate(@RequestBody final JwtUser jwtUser){
         LoginSucessMsg loginStatus=new LoginSucessMsg();
@@ -43,6 +43,28 @@ public class TokenGenrator {
 
         }
       return   loginStatus;
+    }*/
+
+
+    @PostMapping
+    @CrossOrigin(origins = {"*"})
+    public LoginSucessMsg genrate(@RequestBody final JwtUser jwtUser){
+        LoginSucessMsg loginStatus=new LoginSucessMsg();
+        if(userService.getExistUser(jwtUser.getUserName(),jwtUser.getRole())!=0) {
+            //imp Note jwtUser.getUserName(),jwtUser.getRole() this means get email as userName and Password as Role
+            JwtTokenGenerator jwtTokenGenerator=new JwtTokenGenerator();
+            loginStatus.setAuthToken(jwtTokenGenerator.genrate(jwtUser));
+            loginStatus.setUserId(userService.getExistUser(jwtUser.getUserName(),jwtUser.getRole()));
+            loginStatus.setMessage(loginSucessStatusMsg);
+            loginStatus.setStatusCode("200");
+        }else{
+
+            loginStatus.setAuthToken(null);
+            loginStatus.setMessage(loginFailStatusMsg);
+            loginStatus.setStatusCode("400");
+
+        }
+        return   loginStatus;
     }
 
 

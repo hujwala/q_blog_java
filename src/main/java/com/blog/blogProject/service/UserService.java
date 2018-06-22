@@ -58,7 +58,7 @@ public class UserService {
     }
 
 
-    public boolean getExistUser(String userName, String role) {
+    /*public boolean getExistUser(String userName, String role) {
 
         List<User> user=new ArrayList<>();
         userRepo.findAll().forEach(user::add);
@@ -70,7 +70,26 @@ public class UserService {
                 return true;
         }
         return false;
-    }
+    }*/
 
+ /*   public void getUserById(Long userId) {
+        userRepo.delete(userRepo.findById(userId).get());
+
+    }*/
+
+
+    public Long getExistUser(String userName, String role) {
+
+        List<User> user=new ArrayList<>();
+        userRepo.findAll().forEach(user::add);
+        System.out.println(user.size());
+
+        for(int i=0;i<user.size();i++){
+            User lUser=user.get(i);
+            if(lUser.getEmail().equalsIgnoreCase(userName) && lUser.getPassword().equals(role))
+                return lUser.getId();
+        }
+        return 0L;
+    }
 }
 

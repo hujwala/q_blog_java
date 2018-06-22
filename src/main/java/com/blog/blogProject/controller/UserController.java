@@ -44,6 +44,11 @@ public class UserController {
     }
 
 
+   /* @CrossOrigin(origins = {"*"})
+    @DeleteMapping("user/{userId}")
+    public void getUserById(@PathVariable Long userId){
+        userService.getUserById(userId);
+    }*/
 
 
     @CrossOrigin(origins = {"*"})

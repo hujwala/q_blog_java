@@ -5,14 +5,17 @@ public class LoginSucessMsg {
     private String authToken;
     private String Message;
     private String statusCode;
+    private Long userId;
+
 
     public LoginSucessMsg() {
     }
 
-    public LoginSucessMsg(String authToken, String message, String statusCode) {
+    public LoginSucessMsg(Long userId, String authToken, String message, String statusCode) {
         this.authToken = authToken;
         Message = message;
         this.statusCode = statusCode;
+        this.userId = userId;
     }
 
     public String getAuthToken() {
@@ -38,4 +41,14 @@ public class LoginSucessMsg {
     public void setStatusCode(String statusCode) {
         this.statusCode = statusCode;
     }
+
+    public Long getUserId() {
+
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
 }
