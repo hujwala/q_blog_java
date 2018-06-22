@@ -72,10 +72,10 @@ public class UserService {
         return false;
     }*/
 
- /*   public void getUserById(Long userId) {
-        userRepo.delete(userRepo.findById(userId).get());
+    public User getUserById(Long userId) {
+        return userRepo.findById(userId).get();
 
-    }*/
+    }
 
 
     public Long getExistUser(String userName, String role) {

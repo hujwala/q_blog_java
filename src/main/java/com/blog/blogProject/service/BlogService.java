@@ -34,8 +34,6 @@ public class BlogService {
     public void removeBlog(Long blogId) {
         Optional<BlogTable> blogTable = blogRepo.findById(blogId);
         blogRepo.delete(blogTable.get());
-
-
     }
 
     public void updateBlog(Long blogId, BlogTable blog) {
