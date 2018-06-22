@@ -44,4 +44,7 @@ public class BlogService {
         blogRepo.save(blog);
     }
 
+    public BlogTable getBlogById(Long blogId) {
+        return blogRepo.findById(blogId).get();
+    }
 }

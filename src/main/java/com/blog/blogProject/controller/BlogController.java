@@ -68,4 +68,10 @@ public class BlogController {
         return blogService.getAllblog();
     }
 
+    @CrossOrigin(origins = {"*"})
+    @GetMapping("blog/{blogId}")
+    public BlogTable getBlogById(@PathVariable Long blogId){
+        return  blogService.getBlogById(blogId);
+    }
+
 }
